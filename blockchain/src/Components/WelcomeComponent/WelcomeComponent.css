@@ -1,0 +1,26 @@
+.WelcomeComponent {
+	width: 100%;
+    height: 500px;
+    background-color: aliceblue;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0px 40px;
+}
+
+.WelcomeComponentText{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.WelcomeComponentText p{
+    font-size: 20px;
+}
+
+.WelcomeComponentExample{
+    width: 100%;
+    height: 100%;
+}
+

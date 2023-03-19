@@ -1,0 +1,25 @@
+.Header {
+	width: 100vw;
+    height: 8vh;
+    background-color: rgb(113, 119, 140);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0px 50px;
+}
+
+.authDiv{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.HeaderHeading{
+    /* width: 200px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,14 @@
+.RgeisterLoginForm form{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.RgeisterLoginForm form input{
+    /* height: 22px; */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.RgeisterLoginForm form button{}

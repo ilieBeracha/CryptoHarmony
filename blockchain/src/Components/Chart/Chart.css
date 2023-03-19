@@ -1,0 +1,27 @@
+.Chart {
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chartContainer{
+    width: 100%;
+    height: 100%;
+}
+
+.chartContainer canvas{
+    width: 80%;
+    height: 50%;
+}
+
+.ChartFilters{
+    width: 60%;
+    height: 40px;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
