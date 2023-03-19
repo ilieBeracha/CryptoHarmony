@@ -1,3 +1,10 @@
 .LandingPage {
-	
+	width: 100%;
+    min-height: 100%;
+}
+
+.WelcomeComponentDiv{
+   /* background-color: rgb(200, 245, 245); */
+   /* background-color: #D6E6F2; */
+   background-color: #e5e3e3;
 }

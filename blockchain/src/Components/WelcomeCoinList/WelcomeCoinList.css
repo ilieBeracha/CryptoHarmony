@@ -1,0 +1,26 @@
+.WelcomeCoinList {
+	width: 100%;
+    height: max-content;
+    display: flex;
+    box-sizing: border-box;
+    padding: 50px;
+    
+}
+
+.WelcomeCoinListCoins{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.WelcomeCoinListText{
+    width: 35%;
+    font-size: 20px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}

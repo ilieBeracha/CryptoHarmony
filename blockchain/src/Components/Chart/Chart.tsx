@@ -2,15 +2,31 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Chart.css';
 import { createChart } from 'lightweight-charts';
 import { CoinModel } from '../../models/CoinModel';
-import { chartsService } from '../../service/chartsService';
 
 function Chart({ data, type }: { data: CoinModel, type: string }): JSX.Element {
     const chartContainerRef: any = useRef<HTMLDivElement>(null);
     const [graphType, setGraphType] = useState(type);
+    const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.5, height: window.innerHeight * 0.5 });
+    
+    const updateChartSize = () => {
+        setChartSize({
+            width: window.innerWidth * 0.8,
+            height: window.innerHeight * 0.5,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', updateChartSize);
+
+        return () => {
+            window.removeEventListener('resize', updateChartSize);
+        };
+    }, []);
+
 
     useEffect(() => {
         if (!chartContainerRef.current) return;
-        const chart = createChart(chartContainerRef.current, { width: 800, height: 400 });
+        const chart = createChart(chartContainerRef.current, { width: chartSize.width, height: chartSize.height });
         let series: any;
         const fetchHistoricalData = async () => {
             try {
@@ -50,6 +66,8 @@ function Chart({ data, type }: { data: CoinModel, type: string }): JSX.Element {
 
         return () => {
             chart.removeSeries(series);
+            if (chartContainerRef.current === null) return;
+
             chartContainerRef.current.innerHTML = '';
         };
 
@@ -57,7 +75,7 @@ function Chart({ data, type }: { data: CoinModel, type: string }): JSX.Element {
 
 
     return (
-        <div className="Chart">
+        <div className="ChartComponent">
             <div className='ChartFilters'>
                 <select onChange={(e) => setGraphType(e.target.value)}>
                     <option value="price">Price</option>
@@ -65,7 +83,7 @@ function Chart({ data, type }: { data: CoinModel, type: string }): JSX.Element {
                     <option value="volume">Volume</option>
                 </select>
             </div>
-            <div ref={chartContainerRef}></div>
+            <div className='chart' ref={chartContainerRef}></div>
         </div>
     );
 }

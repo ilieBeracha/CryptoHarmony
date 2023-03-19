@@ -1,7 +1,6 @@
 .Header {
 	width: 100vw;
     height: 8vh;
-    background-color: rgb(113, 119, 140);
     display: flex;
     justify-content: space-between;
     align-items: center;
