@@ -19,10 +19,23 @@ class ChartsService {
           ignored: item[11],
         }));
         return {
-          prices: data.map((item:any) => [item.time.getTime(), item.close]),
-          market_caps: data.map((item:any) => [item.time.getTime(), item.assetVolume]),
-          total_volumes: data.map((item:any) => [item.time.getTime(), item.volume]),
-        };
+            prices: data.map((item:any) => [
+              item.time.getTime(),
+              item.open,
+              item.high,
+              item.low,
+              item.close,
+              item.volume
+            ]),
+            market_caps: data.map((item:any) => [
+              item.time.getTime(),
+              item.assetVolume
+            ]),
+            total_volumes: data.map((item:any) => [
+              item.time.getTime(),
+              item.volume
+            ]),
+          };
       }
       
 }

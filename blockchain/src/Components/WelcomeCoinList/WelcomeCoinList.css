@@ -2,15 +2,15 @@
 	width: 100%;
     height: max-content;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     box-sizing: border-box;
     padding: 50px;
     gap: 50px;
-    background-color: #cfcfcf;
+    /* background-color: #FAF8F1; */
 }
 
 .WelcomeCoinListCoins{
-    width: 100%;
+    width: 70%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@
 }
 
 .WelcomeCoinListText{
-    width: 100%;
+    width: 30%;
     font-size: 20px;
     display: flex;
     justify-content: center;

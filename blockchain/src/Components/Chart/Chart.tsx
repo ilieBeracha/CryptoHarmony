@@ -6,7 +6,8 @@ import { CoinModel } from '../../models/CoinModel';
 function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: string, byDate: string, setByDate: any }): JSX.Element {
     const chartContainerRef: any = useRef<HTMLDivElement>(null);
     const [graphType, setGraphType] = useState(type);
-    const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.7, height: window.innerHeight * 0.5});
+    const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.65, height: window.innerHeight * 0.5 });
+    const [graphTypePrice, setGraphTypePrice] = useState('');
 
     const updateChartSize = () => {
         setChartSize({
@@ -31,12 +32,32 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
         const fetchHistoricalData = async () => {
             try {
                 if (graphType === 'price') {
-                    series = chart.addAreaSeries({ title: 'Price', lineColor: 'orange', topColor: 'orange', baseLineColor: 'orange', bottomColor: 'white' });
-                    const priceData: any = data.prices.map((price: [number, number]) => ({
-                        time: price[0] / 1000,
-                        value: Number(price[1])
-                    }));
-                    series.setData(priceData);
+                    if (graphTypePrice === "") {
+
+                        series = chart.addAreaSeries({ title: 'Price', lineColor: 'orange', topColor: 'orange', baseLineColor: 'orange', bottomColor: 'white' });
+                        const priceData: any = data.prices.map((price: [number, number]) => ({
+                            time: price[0] / 1000,
+                            value: Number(price[1])
+                        }));
+                        series.setData(priceData);
+                    }
+                    if (graphTypePrice === 'candle') {
+                        series = chart.addLineSeries({ title: 'Market Cap', color: 'blue' });
+                        const candleData: any = data.prices.map((price: [number, number]) => ({
+                            time: price[0] / 1000,
+                            open: Number(price[1]),
+                            high: Number(price[2]),
+                            low: Number(price[3]),
+                            close: Number(price[4]),
+                        }));
+                        console.log(candleData);
+                        series = chart.addCandlestickSeries({
+                            upColor: "#00ff00",
+                            downColor: "#ff0000",
+                            borderVisible: false,
+                        });
+                        series.setData(candleData);
+                    }
 
                 } else if (graphType === 'market') {
                     series = chart.addLineSeries({ title: 'Market Cap', color: 'blue' });
@@ -53,8 +74,9 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
                         value: Number(volume[1])
                     }));
                     series.setData(totalVolumeData);
+
                 } else {
-                    return
+                    return;
                 }
 
             } catch (error) {
@@ -71,7 +93,7 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
             chartContainerRef.current.innerHTML = '';
         };
 
-    }, [graphType, byDate]);
+    }, [graphType, byDate, graphTypePrice]);
 
 
     return (
@@ -84,24 +106,31 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
                 </select>
                 {
                     graphType === "price" ?
-                        <select onChange={(e) => setByDate(e.target.value)}>
-                            <option value="1m">1m</option>
-                            <option value="3m">3m</option>
-                            <option value="5m">5m</option>
-                            <option value="30m">30m</option>
-                            <option value="1h">1h</option>
-                            <option value="2h">2h</option>
-                            <option value="4h">4h</option>
-                            <option value="6h">6h</option>
-                            <option value="8h">8h</option>
-                            <option value="12h">12h</option>
-                            <option value="1d">1d</option>
-                            <option value="3d">3d</option>
-                            <option value="1w">1w</option>
-                            <option value="1m">1m</option>
-                        </select>
+                        <>
+                            <select onChange={(e) => setByDate(e.target.value)}>
+                                <option value="1m">1m</option>
+                                <option value="3m">3m</option>
+                                <option value="5m">5m</option>
+                                <option value="30m">30m</option>
+                                <option value="1h">1h</option>
+                                <option value="2h">2h</option>
+                                <option value="4h">4h</option>
+                                <option value="6h">6h</option>
+                                <option value="8h">8h</option>
+                                <option value="12h">12h</option>
+                                <option value="1d">1d</option>
+                                <option value="3d">3d</option>
+                                <option value="1w">1w</option>
+                                <option value="1m">1m</option>
+                            </select>
+                            <select onChange={(e) => setGraphTypePrice(e.target.value)}>
+                                <option value="">Line</option>
+                                <option value="candle">Candles</option>
+                            </select>
+                        </>
                         : <></>
                 }
+
             </div>
             <div className='chart' ref={chartContainerRef}></div>
         </div >
