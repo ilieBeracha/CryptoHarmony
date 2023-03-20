@@ -9,10 +9,10 @@
 }
 
 .WelcomeComponentText {
-    min-width: 50%;
-    max-width: 50%;
+    min-width: 60%;
+    max-width: 60%;
     margin: 0 auto;
-    height: 350px;
+    height: 400px;
     box-sizing: border-box;
     /* padding: 100px 300px; */
     display: flex;
