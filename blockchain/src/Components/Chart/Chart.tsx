@@ -14,7 +14,7 @@ import StoreIcon from '@mui/icons-material/Store';
 function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: string, byDate: string, setByDate: any }): JSX.Element {
     const chartContainerRef: any = useRef<HTMLDivElement>(null);
     const [graphType, setGraphType] = useState(type);
-    const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.95, height: window.innerHeight * 0.6 });
+    const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.9, height: window.innerHeight * 0.6 });
     const [graphTypePrice, setGraphTypePrice] = useState('candle');
 
     const updateChartSize = () => {
@@ -34,6 +34,8 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
 
 
     useEffect(() => {
+        console.log(byDate);
+        
         if (!chartContainerRef.current) return;
         const chart = createChart(chartContainerRef.current, { width: chartSize.width, height: chartSize.height });
         let series: any;
@@ -41,7 +43,6 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
             try {
                 if (graphType === 'price') {
                     if (graphTypePrice === "") {
-
                         series = chart.addAreaSeries({ title: 'Price', lineColor: 'orange', topColor: 'orange', baseLineColor: 'orange', bottomColor: 'white' });
                         const priceData: any = data.prices.map((price: [number, number]) => ({
                             time: price[0] / 1000,
@@ -58,7 +59,6 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
                             low: Number(price[3]),
                             close: Number(price[4]),
                         }));
-                        console.log(candleData);
                         series = chart.addCandlestickSeries({
                             upColor: "#00ff00",
                             downColor: "#ff0000",
@@ -117,7 +117,7 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
                             setGraphType(newValue);
                         }}
                     >
-                        <BottomNavigationAction value={'price'} label="Price" icon={<AttachMoneyIcon />} />
+                        <BottomNavigationAction sx={{backgroundColor:"#0D0628'"}} value={'price'} label="Price" icon={<AttachMoneyIcon />} />
                         <BottomNavigationAction value={'market'} label="Market cap" icon={<StoreIcon />} />
                         <BottomNavigationAction value={'volume'} label="Volume" icon={<EqualizerIcon />} />
                     </BottomNavigation>
@@ -155,8 +155,8 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
                                     setGraphTypePrice(newValue);
                                 }}
                             >
-                                <BottomNavigationAction value={''} label="Line" icon={<ShowChartIcon />} />
                                 <BottomNavigationAction value={'candle'} label="candle" icon={<CandlestickChartIcon />} />
+                                <BottomNavigationAction value={''} label="Line" icon={<ShowChartIcon />} />
                             </BottomNavigation>
                         </Box>
 

@@ -4,6 +4,7 @@ import { logoutRedux } from "../../app/authSlice";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import "./Header.css";
+import logo from '../../assets/logos/logo.png';
 
 function Header(): JSX.Element {
     const authSlice = useSelector((state: any) => state.auth);
@@ -12,7 +13,8 @@ function Header(): JSX.Element {
     return (
         <div className="Header">
             <div className="HeaderHeading">
-                <h2>CryptoHarmony</h2>
+                {/* <h2>CryptoHarmony</h2> */}
+                <img src={logo} alt="" />
             </div>
             <div className="authDiv">
                 {

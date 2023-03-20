@@ -4,7 +4,6 @@ import { chartsService } from '../../service/chartsService';
 import Chart from '../Chart/Chart';
 import './WelcomeComponent.css';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import welcomeImage from './welcome2.jpg';
 
 const WelcomeComponent = () => {
     const [coinData, setCoinData] = useState<CoinModel>();
@@ -31,9 +30,6 @@ const WelcomeComponent = () => {
                         <ArrowDownwardIcon fontSize='medium' />
                     </a>
                 </nav>
-                {/* <div className='WelcomeComponentCoinsPreview'>
-
-                </div> */}
             </div>
             <div id='WelcomeComponentExample' className="WelcomeComponentExample">
                 {coinData ? <Chart data={coinData} type={type} byDate={byDate} setByDate={setByDate} /> : <></>}

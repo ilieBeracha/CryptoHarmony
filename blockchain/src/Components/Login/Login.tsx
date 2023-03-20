@@ -52,7 +52,7 @@ export default function Login() {
             >
                 <Box sx={style}>
                     <div className='RgeisterLoginForm'>
-                        <h3>Register</h3> <hr />
+                        <h3>Login</h3> <hr />
                         <form onSubmit={handleSubmit(loginForm)}>
                             <label htmlFor="">Email: </label>
                             <input type="mail" {...register('email')} />

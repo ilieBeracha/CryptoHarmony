@@ -6,7 +6,8 @@
     align-items: center;
     box-sizing: border-box;
     padding: 0px 50px;
-    background-color: #0D0628;
+    background-color: var(--color2);
+    /* background-color: #6B1570; */
 }
 
 .authDiv {
@@ -23,9 +24,13 @@
 }
 
 .HeaderHeading {
-    /* width: 200px; */
+    width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.HeaderHeading img{
+    width: 300px;
 }
