@@ -13,8 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --color1:#F9F7F7
+  --color1:#F9F7F7;
+  --color2:#D4D7DD
 }
+
+
+html{
+  scroll-behavior: smooth;
+}
+
 
 a,
 h1,

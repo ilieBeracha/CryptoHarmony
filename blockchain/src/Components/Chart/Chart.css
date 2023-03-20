@@ -12,15 +12,10 @@
   height: 100%;
 }
 
-.chartContainer canvas {
-  width: 80%;
-  height: 50%;
-}
-
 .ChartFilters {
-  width: 100%;
+  width: 95%;
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-between;
   margin: 20px;
   padding: 0.5rem;
   gap: 20px;
@@ -35,6 +30,7 @@
   font-size: 16px;
   padding: 0.3rem 0.5rem;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .ChartFilters select:focus {
@@ -46,5 +42,9 @@
 .chart {
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.filtersMui{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }

@@ -7,13 +7,15 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import StoreIcon from '@mui/icons-material/Store';
 
 function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: string, byDate: string, setByDate: any }): JSX.Element {
     const chartContainerRef: any = useRef<HTMLDivElement>(null);
     const [graphType, setGraphType] = useState(type);
     const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.95, height: window.innerHeight * 0.6 });
     const [graphTypePrice, setGraphTypePrice] = useState('candle');
-    const [value, setValue] = useState(0);
 
     const updateChartSize = () => {
         setChartSize({
@@ -98,6 +100,7 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
 
             chartContainerRef.current.innerHTML = '';
         };
+        
 
     }, [graphType, byDate, graphTypePrice]);
 
@@ -108,14 +111,15 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
                 <Box sx={{ width: 500 }}>
                     <BottomNavigation
                         showLabels
+                        className='filtersMui'
                         value={graphType}
                         onChange={(event, newValue) => {
                             setGraphType(newValue);
                         }}
                     >
-                        <BottomNavigationAction value={'price'} label="Price" />
-                        <BottomNavigationAction value={'market'} label="Market" />
-                        <BottomNavigationAction value={'volume'} label="Volume" />
+                        <BottomNavigationAction value={'price'} label="Price" icon={<AttachMoneyIcon />} />
+                        <BottomNavigationAction value={'market'} label="Market cap" icon={<StoreIcon />} />
+                        <BottomNavigationAction value={'volume'} label="Volume" icon={<EqualizerIcon />} />
                     </BottomNavigation>
                 </Box>
                 <select defaultValue={byDate} onChange={(e) => setByDate(e.target.value)}>
@@ -145,6 +149,7 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
                         <Box sx={{ width: 300 }}>
                             <BottomNavigation
                                 showLabels
+                                className='filtersMui'
                                 value={graphTypePrice}
                                 onChange={(event, newValue) => {
                                     setGraphTypePrice(newValue);

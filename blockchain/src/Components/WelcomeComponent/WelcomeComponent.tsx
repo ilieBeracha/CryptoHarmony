@@ -1,4 +1,4 @@
-import { useEffect, useState,useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { CoinModel } from '../../models/CoinModel';
 import { chartsService } from '../../service/chartsService';
 import Chart from '../Chart/Chart';
@@ -17,13 +17,23 @@ const WelcomeComponent = () => {
     return (
         <div className="WelcomeComponent">
             <div className="WelcomeComponentText">
-                <p>
-                    Our platform offers state-of-the-art crypto graph analytics. Explore real-time data, chart patterns, and trends
-                    to make informed decisions about your crypto investments.
-                </p>
-                <button>Start learning</button>
+                {/* <div className='WelcomeComponentTextP'> */}
+
+                    <p>
+                        Our platform offers state-of-the-art crypto graph analytics. Explore real-time data, chart patterns, and trends
+                        to make informed decisions about your crypto investments.
+                    </p>
+                    <nav>
+                        <a href='#WelcomeComponentExample'>Read more</a>
+                    </nav>
+                {/* </div> */}
+
+                {/* <div className='WelcomeComponentTextImage'>
+
+                    
+                </div> */}
             </div>
-            <div className="WelcomeComponentExample">
+            <div id='WelcomeComponentExample' className="WelcomeComponentExample">
                 {coinData ? <Chart data={coinData} type={type} byDate={byDate} setByDate={setByDate} /> : <></>}
             </div>
         </div>
