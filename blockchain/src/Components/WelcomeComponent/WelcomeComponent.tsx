@@ -26,6 +26,7 @@ const WelcomeComponent = () => {
             <div className="WelcomeComponentExample">
                 {coinData ? <Chart data={coinData} type={type} byDate={byDate} setByDate={setByDate} /> : <></>}
             </div>
+            <hr />
         </div>
     );
 };

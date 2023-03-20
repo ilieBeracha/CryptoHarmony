@@ -2,16 +2,22 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Chart.css';
 import { createChart } from 'lightweight-charts';
 import { CoinModel } from '../../models/CoinModel';
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 
 function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: string, byDate: string, setByDate: any }): JSX.Element {
     const chartContainerRef: any = useRef<HTMLDivElement>(null);
     const [graphType, setGraphType] = useState(type);
-    const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.65, height: window.innerHeight * 0.5 });
-    const [graphTypePrice, setGraphTypePrice] = useState('');
+    const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.95, height: window.innerHeight * 0.6 });
+    const [graphTypePrice, setGraphTypePrice] = useState('candle');
+    const [value, setValue] = useState(0);
 
     const updateChartSize = () => {
         setChartSize({
-            width: window.innerWidth * 0.7,
+            width: window.innerWidth * 0.3,
             height: window.innerHeight * 0.5,
         });
     };
@@ -99,40 +105,59 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
     return (
         <div className="ChartComponent">
             <div className='ChartFilters'>
-                <select onChange={(e) => setGraphType(e.target.value)}>
-                    <option value="price">Price</option>
-                    <option value="market">Market cap</option>
-                    <option value="volume">Volume</option>
+                <Box sx={{ width: 500 }}>
+                    <BottomNavigation
+                        showLabels
+                        value={graphType}
+                        onChange={(event, newValue) => {
+                            setGraphType(newValue);
+                        }}
+                    >
+                        <BottomNavigationAction value={'price'} label="Price" />
+                        <BottomNavigationAction value={'market'} label="Market" />
+                        <BottomNavigationAction value={'volume'} label="Volume" />
+                    </BottomNavigation>
+                </Box>
+                <select defaultValue={byDate} onChange={(e) => setByDate(e.target.value)}>
+                    <option value="1m">1m</option>
+                    <option value="3m">3m</option>
+                    <option value="5m">5m</option>
+                    <option value="30m">30m</option>
+                    <option value="1h">1h</option>
+                    <option value="2h">2h</option>
+                    <option value="4h">4h</option>
+                    <option value="6h">6h</option>
+                    <option value="8h">8h</option>
+                    <option value="12h">12h</option>
+                    <option value="1d">1d</option>
+                    <option value="3d">3d</option>
+                    <option value="1w">1w</option>
+                    <option value="1m">1m</option>
                 </select>
-                {
-                    graphType === "price" ?
-                        <>
-                            <select onChange={(e) => setByDate(e.target.value)}>
-                                <option value="1m">1m</option>
-                                <option value="3m">3m</option>
-                                <option value="5m">5m</option>
-                                <option value="30m">30m</option>
-                                <option value="1h">1h</option>
-                                <option value="2h">2h</option>
-                                <option value="4h">4h</option>
-                                <option value="6h">6h</option>
-                                <option value="8h">8h</option>
-                                <option value="12h">12h</option>
-                                <option value="1d">1d</option>
-                                <option value="3d">3d</option>
-                                <option value="1w">1w</option>
-                                <option value="1m">1m</option>
-                            </select>
-                            <select onChange={(e) => setGraphTypePrice(e.target.value)}>
-                                <option value="">Line</option>
-                                <option value="candle">Candles</option>
-                            </select>
-                        </>
-                        : <></>
-                }
+
 
             </div>
             <div className='chart' ref={chartContainerRef}></div>
+            <div className='ChartFilters'>
+                {
+                    graphType === "price" ?
+
+                        <Box sx={{ width: 300 }}>
+                            <BottomNavigation
+                                showLabels
+                                value={graphTypePrice}
+                                onChange={(event, newValue) => {
+                                    setGraphTypePrice(newValue);
+                                }}
+                            >
+                                <BottomNavigationAction value={''} label="Line" icon={<ShowChartIcon />} />
+                                <BottomNavigationAction value={'candle'} label="candle" icon={<CandlestickChartIcon />} />
+                            </BottomNavigation>
+                        </Box>
+
+                        : <></>
+                }
+            </div>
         </div >
     );
 }

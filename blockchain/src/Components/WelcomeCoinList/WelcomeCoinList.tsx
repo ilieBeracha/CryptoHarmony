@@ -19,7 +19,7 @@ function WelcomeCoinList(): JSX.Element {
             </div>
             <div className="WelcomeCoinListCoins">
                 {
-                    coins.map((coin: any) => <CoinLogo logo={coin} />)
+                    coins.map((coin: any) => <CoinLogo key={coin} logo={coin} />)
                 }
             </div>
         </div>
