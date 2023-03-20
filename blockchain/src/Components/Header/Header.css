@@ -34,3 +34,12 @@
 .HeaderHeading img{
     width: 300px;
 }
+
+@media only screen and (max-width: 768px) {
+    .Header{
+        padding: 0;
+    }
+    .HeaderHeading img{
+        width: 200px;
+    }
+}

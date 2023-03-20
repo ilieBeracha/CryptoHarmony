@@ -13,3 +13,17 @@
 .coinLogo img{
     width: 100px;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .coinLogo{
+        width: 80px;
+        height: 80px;
+    }
+
+    .coinLogo img{
+        width: 30px;
+        height: 30px;
+    }
+    
+}

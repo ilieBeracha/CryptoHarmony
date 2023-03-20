@@ -1,5 +1,5 @@
 .WelcomeCoinList {
-	width: 100%;
+    width: 100%;
     height: max-content;
     display: flex;
     /* flex-direction: column; */
@@ -9,7 +9,7 @@
     /* background-color: #FAF8F1; */
 }
 
-.WelcomeCoinListCoins{
+.WelcomeCoinListCoins {
     width: 70%;
     height: 100%;
     display: flex;
@@ -19,11 +19,27 @@
     gap: 50px;
 }
 
-.WelcomeCoinListText{
+.WelcomeCoinListText {
     width: 30%;
     font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .WelcomeCoinList{
+        flex-direction: row;
+    }
+
+    .WelcomeCoinListCoins{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .WelcomeCoinListText{
+        align-items: start;
+    }
+    
 }

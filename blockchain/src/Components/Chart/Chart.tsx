@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Chart.css';
 import { createChart } from 'lightweight-charts';
 import { CoinModel } from '../../models/CoinModel';
@@ -35,7 +35,7 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
 
     useEffect(() => {
         console.log(byDate);
-        
+
         if (!chartContainerRef.current) return;
         const chart = createChart(chartContainerRef.current, { width: chartSize.width, height: chartSize.height });
         let series: any;
@@ -100,7 +100,7 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
 
             chartContainerRef.current.innerHTML = '';
         };
-        
+
 
     }, [graphType, byDate, graphTypePrice]);
 
@@ -117,7 +117,7 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
                             setGraphType(newValue);
                         }}
                     >
-                        <BottomNavigationAction sx={{backgroundColor:"#0D0628'"}} value={'price'} label="Price" icon={<AttachMoneyIcon />} />
+                        <BottomNavigationAction sx={{ backgroundColor: "#0D0628'" }} value={'price'} label="Price" icon={<AttachMoneyIcon />} />
                         <BottomNavigationAction value={'market'} label="Market cap" icon={<StoreIcon />} />
                         <BottomNavigationAction value={'volume'} label="Volume" icon={<EqualizerIcon />} />
                     </BottomNavigation>
