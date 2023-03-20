@@ -1,14 +1,15 @@
 .Header {
-	width: 100vw;
+    width: 100vw;
     height: 8vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     padding: 0px 50px;
+    background-color: #0D0628;
 }
 
-.authDiv{
+.authDiv {
     width: 200px;
     display: flex;
     justify-content: center;
@@ -16,9 +17,15 @@
     gap: 20px;
 }
 
-.HeaderHeading{
+.authDiv button {
+    background-color: transparent;
+    color: white;
+}
+
+.HeaderHeading {
     /* width: 200px; */
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
 }

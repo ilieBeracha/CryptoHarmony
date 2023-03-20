@@ -3,6 +3,8 @@ import { CoinModel } from '../../models/CoinModel';
 import { chartsService } from '../../service/chartsService';
 import Chart from '../Chart/Chart';
 import './WelcomeComponent.css';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import welcomeImage from './welcome2.jpg';
 
 const WelcomeComponent = () => {
     const [coinData, setCoinData] = useState<CoinModel>();
@@ -17,20 +19,20 @@ const WelcomeComponent = () => {
     return (
         <div className="WelcomeComponent">
             <div className="WelcomeComponentText">
-                {/* <div className='WelcomeComponentTextP'> */}
-
-                    <p>
-                        Our platform offers state-of-the-art crypto graph analytics. Explore real-time data, chart patterns, and trends
+                <div className='WelcomeComponentTextPreview'>
+                    <h1>Invest In The Future Of Currency</h1>
+                    <p>Our platform offers state-of-the-art crypto graph analytics. Explore real-time data, chart patterns, and trends
                         to make informed decisions about your crypto investments.
                     </p>
-                    <nav>
-                        <a href='#WelcomeComponentExample'>Read more</a>
-                    </nav>
-                {/* </div> */}
+                </div>
+                <nav className='WelcomeComponentNav'>
+                    <a href='#WelcomeComponentExample'>
+                        Read more
+                        <ArrowDownwardIcon fontSize='medium' />
+                    </a>
+                </nav>
+                {/* <div className='WelcomeComponentCoinsPreview'>
 
-                {/* <div className='WelcomeComponentTextImage'>
-
-                    
                 </div> */}
             </div>
             <div id='WelcomeComponentExample' className="WelcomeComponentExample">

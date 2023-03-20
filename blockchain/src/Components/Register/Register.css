@@ -9,6 +9,12 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
     padding: 8px;
+} 
+
+.RegisterLoginComponent button{
+    background-color: transparent;
+    color: white;
 }
 
-.RgeisterLoginForm form button{}
+.RgeisterLoginForm form button{
+}

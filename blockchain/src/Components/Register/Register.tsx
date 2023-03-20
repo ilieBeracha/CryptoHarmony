@@ -42,7 +42,7 @@ export default function Register() {
     }
 
     return (
-        <div>
+        <div className='RegisterLoginComponent'>
             <button onClick={handleOpen}>Register</button>
             <Modal
                 open={open}
