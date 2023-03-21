@@ -61,13 +61,22 @@ function ChartPreview({ data, type, byDate, setByDate }: { data: CoinModel, type
                             close: Number(price[4]),
                         }));
                         console.log(candleData);
-                        
+
+                        series = chart.addHistogramSeries({
+                            color: '#26a69a',
+                            priceFormat: {
+                                type: 'volume',
+                            },
+                            priceScaleId: '',
+                        });
+
                         series = chart.addCandlestickSeries({
                             upColor: "#00ff00",
                             downColor: "#ff0000",
                             borderVisible: false,
                         });
                         series.setData(candleData);
+                        
                     }
 
                 } else if (graphType === 'market') {
@@ -105,7 +114,7 @@ function ChartPreview({ data, type, byDate, setByDate }: { data: CoinModel, type
         };
 
 
-    }, [graphType, byDate, graphTypePrice]);
+    }, [graphType, byDate, graphTypePrice,data]);
 
 
     return (
@@ -129,6 +138,7 @@ function ChartPreview({ data, type, byDate, setByDate }: { data: CoinModel, type
                     <option value="1m">1m</option>
                     <option value="3m">3m</option>
                     <option value="5m">5m</option>
+                    <option value="15m">15m</option>
                     <option value="30m">30m</option>
                     <option value="1h">1h</option>
                     <option value="2h">2h</option>
@@ -165,7 +175,7 @@ function ChartPreview({ data, type, byDate, setByDate }: { data: CoinModel, type
 
                         : <></>
                 }
-              
+
             </div>
         </div >
     );
