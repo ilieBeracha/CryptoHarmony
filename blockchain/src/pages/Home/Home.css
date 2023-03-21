@@ -1,3 +1,17 @@
 .Home {
-	
+	width: 100vw;
+    min-height: 92dvh;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.ChartsDiv{
+    width:75%;
+    /* background-color: aqua; */
+}
+
+.ChartsFiltersAndCoins{
+    width: 22.5%;
+    /* background-color: white; */
 }

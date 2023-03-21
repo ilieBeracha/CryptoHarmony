@@ -6,7 +6,7 @@
 .WelcomeComponentText {
     width: 100%;
     height: 80vh;
-    background-image: url('./welcome2.jpg');
+    background-image: url('./welcome4.jpg');
     background-size: cover;
     color: white;
     display: flex;
@@ -74,7 +74,7 @@
 .WelcomeComponentExample {
     width: 100%;
     /* height: 900px; */
-    height: 100vh;
+    height: 100dvh;
 }
 
 @media only screen and (max-width: 768px) {

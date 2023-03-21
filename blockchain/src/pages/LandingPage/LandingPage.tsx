@@ -1,3 +1,4 @@
+import Tsparticles from "../../Components/Tsparticles/Tsparticles";
 import WelcomeCoinList from "../../Components/WelcomeCoinList/WelcomeCoinList";
 import WelcomeComponent from "../../Components/WelcomeComponent/WelcomeComponent";
 import "./LandingPage.css";

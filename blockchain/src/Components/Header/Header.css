@@ -6,7 +6,7 @@
     align-items: center;
     box-sizing: border-box;
     padding: 0px 50px;
-    background-color: var(--color2);
+    /* background-color: var(--color2); */
     /* background-color: #6B1570; */
 }
 
@@ -20,7 +20,7 @@
 
 .authDiv button {
     background-color: transparent;
-    color: white;
+    color: black;
 }
 
 .HeaderHeading {

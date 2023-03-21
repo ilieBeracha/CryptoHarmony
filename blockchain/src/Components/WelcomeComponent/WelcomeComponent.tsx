@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { CoinModel } from '../../models/CoinModel';
 import { chartsService } from '../../service/chartsService';
-import Chart from '../Chart/Chart';
+import ChartPreview from '../ChartPreview/ChartPreview';
 import './WelcomeComponent.css';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
@@ -32,7 +32,9 @@ const WelcomeComponent = () => {
                 </nav>
             </div>
             <div id='WelcomeComponentExample' className="WelcomeComponentExample">
-                {coinData ? <Chart data={coinData} type={type} byDate={byDate} setByDate={setByDate} /> : <></>}
+                {coinData ?
+                    <ChartPreview data={coinData} type={type} byDate={byDate} setByDate={setByDate} />
+                    : <></>}
             </div>
         </div>
     );

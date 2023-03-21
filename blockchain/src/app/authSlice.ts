@@ -5,8 +5,8 @@ const token = window.localStorage.getItem('token');
 let initialState = null;
 
 if (token) {
-    const { firstName, lastName, sub, role } = jwtDecode<{ firstName: string, lastName: string, sub: number, role: string }>(token);
-    initialState = { firstName, lastName, sub, role };
+    const { firstName, lastName, sub } = jwtDecode<{ firstName: string, lastName: string, sub: number }>(token);
+    initialState = { firstName, lastName, sub };
 }
 
 const authSlice = createSlice({
@@ -14,8 +14,8 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         loginRedux: (state, action: PayloadAction<string>) => {
-            const { firstName, lastName, sub, role } = jwtDecode<{ firstName: string, lastName: string, sub: number, role: string }>(action.payload);
-            state = { firstName, lastName, sub, role };
+            const { firstName, lastName, sub } = jwtDecode<{ firstName: string, lastName: string, sub: number }>(action.payload);
+            state = { firstName, lastName, sub };
             window.localStorage.setItem('token', action.payload);
             return state;
         },

@@ -14,44 +14,11 @@
   height: 100%;
 }
 
-.ChartFilters {
-  width: 95%;
-  min-height: 60px;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
-  padding: 0.5rem;
-  gap: 20px;
-}
-
-.ChartFilters select {
-  background-color: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  color: #4a5568;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0.3rem 0.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-}
-
-.ChartFilters select:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-  border-color: #4299e1;
-}
-
-.chart {
-  border-radius: 10px;
+.Chart {
+  /* border-radius: 10px; */
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
-
-.filtersMui {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-}
-
 
 @media only screen and (max-width: 768px) {
   .ChartComponent {
