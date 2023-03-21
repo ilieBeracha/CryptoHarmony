@@ -19,7 +19,7 @@ const authSlice = createSlice({
             window.localStorage.setItem('token', action.payload);
             return state;
         },
-        logoutRedux: (state) => {
+        logoutRedux: (state:any) => {
             window.localStorage.removeItem(`token`);
             return null;
         },

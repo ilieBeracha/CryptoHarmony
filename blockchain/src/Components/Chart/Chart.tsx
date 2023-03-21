@@ -2,6 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import './Chart.css';
 import { createChart } from 'lightweight-charts';
 import { CoinModel } from '../../models/CoinModel';
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 
 function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: string, byDate: string, setByDate: any }): JSX.Element {
     const chartContainerRef: any = useRef<HTMLDivElement>(null);
@@ -26,40 +31,55 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
 
 
     useEffect(() => {
-        console.log(byDate);
-
         if (!chartContainerRef.current) return;
-        const chart = createChart(chartContainerRef.current, { width: chartSize.width, height: chartSize.height });
+        const chart = createChart(chartContainerRef.current, {
+            width: chartSize.width,
+            height: chartSize.height,
+            layout: {
+                background: {
+                    color: '#F9F7F7',
+                },
+            },
+            grid: {
+                vertLines: {
+                    visible: false
+                },
+                horzLines: {
+                    visible: true
+                }
+            }
+        });
+
         let series: any;
         const fetchHistoricalData = async () => {
             try {
                 if (graphType === 'price') {
-                //     if (graphTypePrice === "") {
-                //         series = chart.addAreaSeries({ title: 'Price', lineColor: 'orange', topColor: 'orange', baseLineColor: 'orange', bottomColor: 'white' });
-                //         const priceData: any = data.prices.map((price: [number, number]) => ({
-                //             time: price[0] / 1000,
-                //             value: Number(price[1])
-                //         }));
-                //         series.setData(priceData);
-                //     }
-                    // if (graphTypePrice === 'candle') {
-                        series = chart.addLineSeries({ title: 'Market Cap', color: 'blue' });
-                        const candleData: any = data.prices.map((price: any) => ({
-                            time: price[0] / 1000,
-                            open: Number(price[1]),
-                            high: Number(price[2]),
-                            low: Number(price[3]),
-                            close: Number(price[4]),
-                        }));
-                        console.log(candleData);
-                        
-                        series = chart.addCandlestickSeries({
-                            upColor: "#00ff00",
-                            downColor: "#ff0000",
-                            borderVisible: false,
-                        });
-                        series.setData(candleData);
-                    // }
+                        if (graphTypePrice === "") {
+                            series = chart.addAreaSeries({ title: 'Price', lineColor: 'orange', topColor: 'orange', baseLineColor: 'orange', bottomColor: 'white' });
+                            const priceData: any = data.prices.map((price: [number, number]) => ({
+                                time: price[0] / 1000,
+                                value: Number(price[1])
+                            }));
+                            series.setData(priceData);
+                        }
+                    if (graphTypePrice === 'candle') {
+                    series = chart.addLineSeries({ title: 'Market Cap', color: 'blue' });
+                    const candleData: any = data.prices.map((price: any) => ({
+                        time: price[0] / 1000,
+                        open: Number(price[1]),
+                        high: Number(price[2]),
+                        low: Number(price[3]),
+                        close: Number(price[4]),
+                    }));
+                    console.log(candleData);
+
+                    series = chart.addCandlestickSeries({
+                        upColor: "#00ff00",
+                        downColor: "#ff0000",
+                        borderVisible: false,
+                    });
+                    series.setData(candleData);
+                    }
 
                 } else if (graphType === 'market') {
                     series = chart.addLineSeries({ title: 'Market Cap', color: 'blue' });
@@ -96,11 +116,26 @@ function Chart({ data, type, byDate, setByDate }: { data: CoinModel, type: strin
         };
 
 
-    }, [graphType, byDate, graphTypePrice]);
+    }, [graphType, byDate, graphTypePrice, data]);
 
 
     return (
         <div className="ChartComponent">
+            <div className='ChartsFiltersAndCoinsGraphTypePrice'>
+                        <Box sx={{ width: 200 }}>
+                            <BottomNavigation
+                                showLabels
+                                className='filtersMui'
+                                value={graphTypePrice}
+                                onChange={(event, newValue) => {
+                                    setGraphTypePrice(newValue);
+                                }}
+                            >
+                                <BottomNavigationAction value={'candle'} label="candle" icon={<CandlestickChartIcon />} />
+                                <BottomNavigationAction value={''} label="Line" icon={<ShowChartIcon />} />
+                            </BottomNavigation>
+                        </Box>
+                    </div>
             <div className='Chart' ref={chartContainerRef}></div>
         </div >
     );

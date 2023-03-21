@@ -11,7 +11,7 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { logoutRedux } from '../../app/authSlice';
-import './ProfileMenu'
+import './ProfileMenu.css'
 
 export default function ProfileMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -46,9 +46,9 @@ export default function ProfileMenu() {
                         aria-expanded={open ? 'true' : undefined}
                     >
                         {
-                            <>
+                            <div className='ProfileHeader'>
                                 {authSlice.firstName + " " + authSlice.lastName}
-                            </>
+                            </div>
                         }
                     </div>
                 </Tooltip>
