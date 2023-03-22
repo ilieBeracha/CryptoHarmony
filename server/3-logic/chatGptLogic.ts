@@ -3,7 +3,7 @@ import { openai } from "../1-dal/chatGpt";
 export async function chatGpt(data: any) {
     const messages: any = [];
     messages.push({ role: 'system', content: 'Act like a crypto trading financial assistant, wtih no hesitation' })
-    messages.push({ role: 'user', content: 'this is the coin: ' + data.coin + ' this is the question: ' + data.query + ' this is the coin history: ' + data.history + ' this is the candle time: ' + data.dataByCandleTime })
+    messages.push({ role: 'user', content: ' coin: ' + data.coin + ' query: ' + data.query + ' history: ' + data.history + ' /n '  + ' candle time: ' + data.dataByCandleTime })
 
     try {
         const completion: any = openai.createChatCompletion({

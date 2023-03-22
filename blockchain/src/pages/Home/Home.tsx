@@ -65,7 +65,11 @@ function Home(): JSX.Element {
     }, [coin, byDate]);
 
     useEffect(() => {
-        chartsService.getCoinData(coin, byDate).then((res) => setCoinData(res));
+        chartsService.getCoinData(coin, byDate).then((res) => {
+            setCoinData(res)
+            console.log(res);
+        });
+        
     }, [coin, byDate]);
 
     useEffect(() => {
@@ -84,6 +88,8 @@ function Home(): JSX.Element {
             history: coinData.prices.slice(-90),
             dataByCandleTime: byDate
         };
+        console.log(coinData.prices.slice(-90));
+        
         tradesService.sendTradesHistoryAndQuery(newData)
             .then((res) => {
                 setChatResponse(res);
