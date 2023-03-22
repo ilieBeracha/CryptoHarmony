@@ -13,7 +13,6 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
     const [graphType, setGraphType] = useState(type);
     const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.8, height: window.innerHeight * 0.92 });
     const [graphTypePrice, setGraphTypePrice] = useState('candle');
-    const [currentPosition, setCurrentPosition] = useState<number | null>(null);
 
     const updateChartSize = () => {
 
@@ -51,24 +50,11 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
                 }
             },
 
-        });
-        const saveCurrentPosition = () => {
-            if (chart.timeScale()) {
-                setCurrentPosition(chart.timeScale().scrollPosition());
-            }
-
-        };
-        const restoreCurrentPosition = () => {
-            if (chart.timeScale() && currentPosition !== null) {
-                chart.timeScale().scrollToPosition(currentPosition, false);
-            }
-
-        };
+        });    
 
         let series: any;
         const fetchHistoricalData = async () => {
             try {
-                restoreCurrentPosition();
 
                 if (graphType === 'price') {
                     if (graphTypePrice === "") {
@@ -117,7 +103,6 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
                     return;
                 }
 
-                saveCurrentPosition()
             } catch (error) {
                 console.error('Error fetching historical data:', error);
             }
