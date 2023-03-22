@@ -47,6 +47,7 @@ export default function ProfileMenu() {
                     >
                         {
                             <div className='ProfileHeader'>
+                                <Avatar />
                                 {authSlice.firstName + " " + authSlice.lastName}
                             </div>
                         }

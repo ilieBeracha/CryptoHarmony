@@ -21,9 +21,3 @@ export async function register(user: UserInterface) {
         return results
     }
 }
-
-// export async function getUserById(id: number) {
-//     const query = 'SELECT * FROM users WHERE id = ?'
-//     const [results] = await execute<OkPacket>(query, [id]);
-//     return results;
-// }

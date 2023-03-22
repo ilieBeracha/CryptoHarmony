@@ -28,33 +28,33 @@ const WelcomeComponent = () => {
 
         newWs.onmessage = (event) => {
             const message = JSON.parse(event.data);
-            
+
             if (message.k) {
-              const { t, o, h, l, c, v } = message.k;
-              const time = new Date(t).getTime();
-              const open = String(o);
-              const high = String(h);
-              const low = String(l);
-              const close = String(c);
-              const volume = String(v);
-              
-              setCoinData((prevState: any) => {
-                const lastPrice = prevState.prices[prevState.prices.length - 1];
-                const newPrices = [...prevState.prices];
-                if (lastPrice && lastPrice[0] === time) {
-                  lastPrice[4] = close;
-                  lastPrice[5] = volume;
-                } else {
-                  const newPrice = [time, open, high, low, close, volume];
-                  newPrices.push(newPrice);
-                }
-                console.log(newPrices);
-                
-                return { ...prevState, prices: newPrices };
-              });
+                const { t, o, h, l, c, v } = message.k;
+                const time = new Date(t).getTime();
+                const open = String(o);
+                const high = String(h);
+                const low = String(l);
+                const close = String(c);
+                const volume = String(v);
+
+                setCoinData((prevState: any) => {
+                    const lastPrice = prevState.prices[prevState.prices.length - 1];
+                    const newPrices = [...prevState.prices];
+                    if (lastPrice && lastPrice[0] === time) {
+                        lastPrice[4] = close;
+                        lastPrice[5] = volume;
+                    } else {
+                        const newPrice = [time, open, high, low, close, volume];
+                        newPrices.push(newPrice);
+                    }
+                    console.log(newPrices);
+
+                    return { ...prevState, prices: newPrices };
+                });
             }
-          };
-          
+        };
+
 
         return () => {
             if (newWs) newWs.close();
@@ -69,9 +69,8 @@ const WelcomeComponent = () => {
         <div className="WelcomeComponent">
             <div className="WelcomeComponentText">
                 <div className='WelcomeComponentTextPreview'>
-                    <h1>Invest In The Future Of Currency</h1>
-                    <p>Our platform offers state-of-the-art crypto graph analytics. Explore real-time data, chart patterns, and trends
-                        to make informed decisions about your crypto investments.
+                    <h1>Discover The Future of Currency with AI Assistance</h1>
+                    <p>Our platform utilizes state-of-the-art crypto graph analytics and AI technology to provide you with real-time data, chart patterns, and trends to make informed decisions about your crypto investments. With the help of our AI assistant, you can gain insights and receive personalized recommendations tailored to your investment goals.
                     </p>
                 </div>
                 <nav className='WelcomeComponentNav'>

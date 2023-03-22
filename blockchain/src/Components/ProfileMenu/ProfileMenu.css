@@ -2,9 +2,12 @@
 	
 }
 
-.ProfileHeader{
-    background-color: #9b9898;
+.ProfileHeader {
     padding: 5px;
     border-radius: 5px;
-    color: white;
+    color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }

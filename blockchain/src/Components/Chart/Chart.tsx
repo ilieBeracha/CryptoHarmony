@@ -14,6 +14,8 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
     const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.8, height: window.innerHeight * 0.92 });
     const [graphTypePrice, setGraphTypePrice] = useState('candle');
 
+
+
     const updateChartSize = () => {
 
         setChartSize({
@@ -50,7 +52,7 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
                 }
             },
 
-        });    
+        });
 
         let series: any;
         const fetchHistoricalData = async () => {
@@ -75,10 +77,12 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
                             close: Number(price[4]),
                         }));
 
+
                         series = chart.addCandlestickSeries({
                             upColor: "#00ff00",
                             downColor: "#ff0000",
                             borderVisible: false,
+                            title: 'Current price'
                         });
                         series.setData(candleData);
                     }
@@ -138,6 +142,8 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
                         <BottomNavigationAction value={''} label="Line" icon={<ShowChartIcon />} />
                     </BottomNavigation>
                 </Box>
+
+
                 <select defaultValue={byDate} onChange={(e) => setByDate(e.target.value)}>
                     <option value="1m">1m</option>
                     <option value="3m">3m</option>

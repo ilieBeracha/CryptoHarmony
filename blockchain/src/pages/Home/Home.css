@@ -1,23 +1,23 @@
 .Home {
-	width: 100vw;
+    width: 100vw;
     min-height: 92dvh;
     display: flex;
     justify-content: space-between;
 }
 
 
-.ChartsDiv{
-    width:75%;
+.ChartsDiv {
+    width: 75%;
 }
 
-.ChartsFiltersAndCoins{
+.ChartsFiltersAndCoins {
     height: 90dvh;
     width: 22.5%;
     /* background-color: var(--color2); */
     position: relative;
 }
 
-.ChartsFiltersAndCoinsPairs{
+.ChartsFiltersAndCoinsPairs {
     height: 90dvh;
     border-left: 1px solid #ccc;
     box-sizing: border-box;
@@ -37,10 +37,51 @@
     padding: 0.3rem 0.5rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  }
-  
-  .ChartsFiltersAndCoinsPairs select:focus {
+}
+
+.ChartsFiltersAndCoinsPairs select:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
     border-color: #4299e1;
-  }
+}
+
+.ChartsFiltersAndCoinsChatGPT {
+    width: 100%;
+    height: 100%;
+}
+
+
+.ChartsFiltersAndCoinsChatGPT {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-top: 2px solid #ccc;
+}
+
+.ChartsFiltersAndCoinsChatGPT form {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+}
+
+.ChartsFiltersAndCoinsChatGPT form input {
+    width: 90%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.noChat{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
