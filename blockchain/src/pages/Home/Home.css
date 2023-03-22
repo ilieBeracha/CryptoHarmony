@@ -60,6 +60,7 @@
     flex-direction: column;
     position: relative;
     border-top: 2px solid #ccc;
+    font-size: 12px;
 }
 
 .ChartsFiltersAndCoinsChatGPT form {

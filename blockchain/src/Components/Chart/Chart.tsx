@@ -82,7 +82,7 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
                             upColor: "#00ff00",
                             downColor: "#ff0000",
                             borderVisible: false,
-                            title: 'Current price'
+                            // title: 'Current price'
                         });
                         series.setData(candleData);
                     }
