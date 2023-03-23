@@ -35,15 +35,14 @@ function Home(): JSX.Element {
             const message = JSON.parse(event.data);
             
             if (message.k) {
-                console.log(324);
-                
                 const { t, o, h, l, c, v } = message.k;
                 const time = t;
-                const open = String(o);
-                const high = String(h);
-                const low = String(l);
-                const close = String(c);
-                const volume = String(v);
+                const open = parseFloat(o);
+                const high = parseFloat(h);
+                const low = parseFloat(l);
+                const close = parseFloat(c);
+                const volume = parseFloat(v);
+
 
                 setCoinData((prevState: any) => {
                     const lastPrice = prevState.prices[prevState.prices.length - 1];
@@ -58,6 +57,8 @@ function Home(): JSX.Element {
                         const newPrice = [time, open, high, low, close, volume];
                         newPrices.push(newPrice);
                     }
+                    console.log(newPrices);
+                    
                     return { ...prevState, prices: newPrices };
                 });
             }

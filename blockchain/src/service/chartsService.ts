@@ -17,7 +17,7 @@ class ChartsService {
       buyBaseVolume: item[9],
       buyAssetVolume: item[10],
       ignored: item[11],
-    }));
+    }));    
     return {
       prices: data.map((item: any) => [
         item.time.getTime(),
