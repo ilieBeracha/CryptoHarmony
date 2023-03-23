@@ -13,7 +13,8 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
     const [graphType, setGraphType] = useState(type);
     const [chartSize, setChartSize] = useState({ width: window.innerWidth * 0.8, height: window.innerHeight * 0.92 });
     const [graphTypePrice, setGraphTypePrice] = useState('candle');
-
+    const chartInstance = useRef<any>(null);
+    const series = useRef<any>(null);
 
 
     const updateChartSize = () => {
@@ -35,7 +36,7 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
 
     useEffect(() => {
         if (!chartContainerRef.current) return;
-        const chart = createChart(chartContainerRef.current, {
+        chartInstance.current = createChart(chartContainerRef.current, {
             width: chartSize.width,
             height: chartSize.height,
             layout: {
@@ -54,58 +55,26 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
 
         });
 
-        let series: any;
+
         const fetchHistoricalData = async () => {
             try {
-
-                if (graphType === 'price') {
-                    if (graphTypePrice === "") {
-                        series = chart.addAreaSeries({ title: 'Price', lineColor: 'orange', topColor: 'orange', baseLineColor: 'orange', bottomColor: 'white' });
-                        const priceData: any = data.prices.map((price: [number, number]) => ({
-                            time: price[0] / 1000,
-                            value: Number(price[1])
-                        }));
-                        series.setData(priceData);
-                    }
-                    if (graphTypePrice === 'candle') {
-                        series = chart.addLineSeries({ title: 'Market Cap', color: 'blue' });
-                        const candleData: any = data.prices.map((price: any) => ({
-                            time: price[0] / 1000,
-                            open: Number(price[1]),
-                            high: Number(price[2]),
-                            low: Number(price[3]),
-                            close: Number(price[4]),
-                        }));
+                series.current = chartInstance.current.addLineSeries({ title: 'Market Cap', color: 'blue' });
+                const candleData: any = data.prices.map((price: any) => ({
+                    time: price[0] / 1000,
+                    open: Number(price[1]),
+                    high: Number(price[2]),
+                    low: Number(price[3]),
+                    close: Number(price[4]),
+                }));
 
 
-                        series = chart.addCandlestickSeries({
-                            upColor: "#00ff00",
-                            downColor: "#ff0000",
-                            borderVisible: false,
-                            lastValueVisible:true
-                        });
-                        series.setData(candleData);
-                    }
-
-                } else if (graphType === 'market') {
-                    series = chart.addLineSeries({ title: 'Market Cap', color: 'blue' });
-                    const marketCapData: any = data.market_caps.map((marketCap: [number, number]) => ({
-                        time: marketCap[0] / 1000,
-                        value: Number(marketCap[1])
-                    }));
-                    series.setData(marketCapData);
-
-                } else if (graphType === 'volume') {
-                    series = chart.addLineSeries({ title: 'Total Volume', color: 'green' });
-                    const totalVolumeData: any = data.total_volumes.map((volume: [number, number]) => ({
-                        time: volume[0] / 1000,
-                        value: Number(volume[1])
-                    }));
-                    series.setData(totalVolumeData);
-
-                } else {
-                    return;
-                }
+                series.current = chartInstance.current.addCandlestickSeries({
+                    upColor: "#00ff00",
+                    downColor: "#ff0000",
+                    borderVisible: false,
+                    lastValueVisible: true
+                });
+                series.current.setData(candleData);
 
             } catch (error) {
                 console.error('Error fetching historical data:', error);
@@ -116,14 +85,27 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
         fetchHistoricalData();
 
         return () => {
-            chart.removeSeries(series);
+            chartInstance.current.removeSeries(series.current);
             if (chartContainerRef.current === null) return;
 
             chartContainerRef.current.innerHTML = '';
         };
 
 
-    }, [graphType, byDate, graphTypePrice, data]);
+    }, [graphType, byDate, graphTypePrice]);
+
+    useEffect(() => {
+        if (!chartInstance.current || !series.current) return;
+
+        const candleData = data.prices.map((price: any) => ({
+            time: price[0] / 1000,
+            open: Number(price[1]),
+            high: Number(price[2]),
+            low: Number(price[3]),
+            close: Number(price[4]),
+        }));
+        series.current.setData(candleData);
+    }, [data])
 
 
     return (

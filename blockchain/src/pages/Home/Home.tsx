@@ -33,10 +33,12 @@ function Home(): JSX.Element {
 
         newWs.onmessage = (event) => {
             const message = JSON.parse(event.data);
-
+            
             if (message.k) {
+                console.log(324);
+                
                 const { t, o, h, l, c, v } = message.k;
-                const time = new Date(t).getTime();
+                const time = t;
                 const open = String(o);
                 const high = String(h);
                 const low = String(l);
@@ -45,11 +47,14 @@ function Home(): JSX.Element {
 
                 setCoinData((prevState: any) => {
                     const lastPrice = prevState.prices[prevState.prices.length - 1];
-                    const newPrices = [...prevState.prices];
+                    const newPrices = [...prevState.prices];                    
                     if (lastPrice && lastPrice[0] === time) {
+                        lastPrice[1] = open;
+                        lastPrice[2] = high;
+                        lastPrice[3] = low;
                         lastPrice[4] = close;
                         lastPrice[5] = volume;
-                    } else {
+                      } else {
                         const newPrice = [time, open, high, low, close, volume];
                         newPrices.push(newPrice);
                     }
@@ -87,9 +92,7 @@ function Home(): JSX.Element {
             query: data.query,
             history: coinData.prices.slice(-90),
             dataByCandleTime: byDate
-        };
-        console.log(coinData.prices.slice(-90));
-        
+        };        
         tradesService.sendTradesHistoryAndQuery(newData)
             .then((res) => {
                 setChatResponse(res);
