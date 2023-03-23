@@ -18,7 +18,6 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
 
 
     const updateChartSize = () => {
-
         setChartSize({
             width: window.innerWidth * 0.3,
             height: window.innerHeight * 0.5,
@@ -97,12 +96,13 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
     useEffect(() => {
         if (!chartInstance.current || !series.current) return;
 
-        const candleData = data.prices.map((price: any) => ({
-            time: price[0] / 1000,
-            open: Number(price[1]),
-            high: Number(price[2]),
-            low: Number(price[3]),
-            close: Number(price[4]),
+        const candleData = data.prices.map((data: any) => ({
+            time: data[0] / 1000,
+            open: Number(data[1]),
+            high: Number(data[2]),
+            low: Number(data[3]),
+            close: Number(data[4]),
+            volume: Number(data[5])
         }));
         series.current.setData(candleData);
     }, [data])
@@ -111,7 +111,7 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
     return (
         <div className="ChartComponent">
             <div className='ChartComponentFilters'>
-                <Box sx={{ width: 200 }}>
+                {/* <Box sx={{ width: 200 }}>
                     <BottomNavigation
                         showLabels
                         className='filtersMui'
@@ -123,7 +123,7 @@ function Chart({ data, type, byDate, setByDate }: { data: any, type: string, byD
                         <BottomNavigationAction value={'candle'} label="candle" icon={<CandlestickChartIcon />} />
                         <BottomNavigationAction value={''} label="Line" icon={<ShowChartIcon />} />
                     </BottomNavigation>
-                </Box>
+                </Box> */}
 
 
                 <select defaultValue={byDate} onChange={(e) => setByDate(e.target.value)}>
